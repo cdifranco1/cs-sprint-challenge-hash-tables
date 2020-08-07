@@ -9,6 +9,19 @@ def reconstruct_trip(tickets, length):
     """
     YOUR CODE HERE
     """
-    # Your code here
+    lookup = {}
+    routes = [None] * length
+    for x in tickets:
+        lookup[x.source] = x.destination
+    
+    routes[0] = lookup['NONE']
+    for i in range(1, len(routes)):
+        routes[i] = lookup[routes[i - 1]]
 
-    return route
+    return routes
+
+ticket_1 = Ticket("NONE", "PDX")
+ticket_2 = Ticket("PDX", "DCA")
+ticket_3 = Ticket("DCA", "NONE")
+
+tickets = [ticket_1, ticket_2, ticket_3]
